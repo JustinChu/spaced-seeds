@@ -5,6 +5,7 @@ import itertools
 import math
 import numpy as np
 import pandas as pd
+import sys
 from scipy.special import comb
 
 
@@ -63,12 +64,16 @@ def get_sigma(s1, s2):
 def main():
     args = parse_args()
     fh = open(args.file, "r")
+    #skip fist line
+    #fh.readline()
+    print("OC\tEntropy")
     for line in fh:
-        seedSet = line.strip().split(" ")
-        print(line.strip() + "\t"+ str(overlap_complexity(seedSet)))
+        seedSet = line.strip().split("\t")[0].split(" ")
+#         baseStr = line.strip() + "\t"+ str(overlap_complexity(seedSet))
+        oc = overlap_complexity(seedSet)
+        for seed in seedSet:
+            print(str(oc) + "\t" + str(calculate_entropy(seed, args.entropy_bits)))
 #     seedSet = args.sseeds.split(" ")
-#     for seed in seedSet:
-#         print(calculate_entropy(seed, args.entropy_bits))
 #     print(overlap_complexity(seedSet))
 #     calculate_entropy_vect = np.vectorize(calculate_entropy, excluded=['s_size'])
 #     entropies_1 = calculate_entropy_vect(seeds, 2)
