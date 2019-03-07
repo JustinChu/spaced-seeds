@@ -29,7 +29,7 @@ def usage():
     print("\t-e|--minlen")
     print("\t\tminimum seed length (0) of at least one seed.")
     print("\t-t|--totalnum")
-    print("\t\tminimum seed length (0) of at least one seed.")
+    print("\t\tNumber of seed sets to generate")
 
 
 
